@@ -12,7 +12,7 @@ La base de datos permite gestionar:
 - Tipos de usuario
 
   
-#Servicios utilizados
+Servicios utilizados:
 -Docker desktop
 -PostgreSQL
 -PGAdmin4
