@@ -1,0 +1,39 @@
+services:
+  postgres_db:
+    image: postgres:14
+    container_name: postgres_container
+    restart: always
+    environment:
+      POSTGRES_USER: ulimar
+      POSTGRES_PASSWORD: ex4men_db
+      POSTGRES_DB: midterm_db  # Puedes cambiar el nombre de la BD por defecto si lo deseas
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - red-ulimar
+
+  pgadmin_panel:
+    image: dpage/pgadmin4
+    container_name: pgadmin_container
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: usuario@servilimar.com
+      PGADMIN_DEFAULT_PASSWORD: limar#123
+    ports:
+      - "8080:80"  # Accederás desde tu navegador web usando http://localhost:8080
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - red-ulimar
+    depends_on:
+      - postgres_db
+
+volumes:
+  postgres_data:
+  pgadmin_data:
+
+networks:
+  red-ulimar:
+    driver: bridge
